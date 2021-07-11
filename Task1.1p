@@ -1,4 +1,3 @@
-// C++ code
 int TempSensor = 0;
 int MotionSensor = 0;
 
