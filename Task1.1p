@@ -1,0 +1,53 @@
+// C++ code
+int TempSensor = 0;
+int MotionSensor = 0;
+
+void setup()
+{
+  pinMode(A1, INPUT);
+  pinMode(11, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+  TempSensor = -40 + 0.488155 * (analogRead(A1) - 20);
+  MotionSensor = digitalRead(2);
+  
+  if (TempSensor < 0) {
+    analogWrite(11, 102);
+    analogWrite(9, 255);
+    analogWrite(10, 255);
+  }
+  if (TempSensor <= 9) {
+    analogWrite(11, 34);
+    analogWrite(9, 0);
+    analogWrite(10, 255);
+  }
+  if (TempSensor <= 19) {
+    analogWrite(11, 51);
+    analogWrite(9, 51);
+    analogWrite(10, 255);
+  }
+  if (TempSensor > 20) {
+    analogWrite(11, 255);
+    analogWrite(9, 119);
+    analogWrite(10, 0);
+  }
+  if (TempSensor >= 40) {
+    analogWrite(11, 255);
+    analogWrite(9, 0);
+    analogWrite(10, 0);
+  }
+  
+  if (MotionSensor == HIGH)
+  {
+    digitalWrite (13, HIGH);
+  }
+  else
+  {
+    digitalWrite (13, LOW);
+  } 
+}
